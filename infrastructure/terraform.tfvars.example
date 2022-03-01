@@ -8,4 +8,4 @@ service_account_project  = "project-id-12345"
   gcloud iam service-accounts keys create key-file \
     --iam-account=terraform@project-id-12345.iam.gserviceaccount.com
 */
-credentials_file         = "path/to/service-account-keys.json"
+credentials_file         = "path/to/service-account-key.json"
