@@ -75,7 +75,7 @@ data "google_compute_network" "host_vpc" {
   project = var.project_host_vpc
 }
 
-data "google_compute_subnetwork" "us_east4-2" {
+data "google_compute_subnetwork" "primary" {
   region  = "us-east4"
   name    = var.subnetwork_id
   project = var.project_host_vpc
@@ -84,7 +84,7 @@ data "google_compute_subnetwork" "us_east4-2" {
 resource "google_compute_subnetwork_iam_binding" "subnetwork" {
   project    = var.project_host_vpc
   region     = "us-east4"
-  subnetwork = data.google_compute_subnetwork.id
+  subnetwork = data.google_compute_subnetwork.primary.id
   role       = "roles/compute.networkUser"
   members = [
     "serviceAccount:service-${google_project.target_project.number}@container-engine-robot.iam.gserviceaccount.com",
