@@ -5,5 +5,6 @@
 
 SA_PROJECT=$(gcloud config get-value project)
 
-gcloud iam service-accounts keys create key-file \
+gcloud iam service-accounts keys create \
+    ./infrastructure/service-account-key.json \
     --iam-account=terraform@"$SA_PROJECT".iam.gserviceaccount.com
