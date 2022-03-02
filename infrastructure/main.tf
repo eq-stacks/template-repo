@@ -1,6 +1,7 @@
 variable "credentials_file" {}
 variable "service_account_project" {}
-variable "target_project" {}
+variable "target_project_name" {}
+variable "target_project_id" {}
 variable "org_id" {}
 variable "billing_account" {}
 variable "project_owners" {}
