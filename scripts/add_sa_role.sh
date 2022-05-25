@@ -6,7 +6,7 @@ ORG_ID=$(gcloud organizations list --format 'value(ID)')
 TIMESTAMP=$(date +%s)
 DELTA=3000
 TIMESTAMP_PLUS_EXPIRY=$((TIMESTAMP + DELTA))
-EXPIRY=$(date -ur "$TIMESTAMP_PLUS_EXPIRY" +"%Y-%m-%dT%H:%M:%SZ")
+EXPIRY=$(printf '%(%Y-%m-%dT%H:%M:%SZ)T' $TIMESTAMP_PLUS_EXPIRY)
 SA_PROJECT=$(gcloud config get-value project)
 SERVICE_ACCOUNT="terraform@$SA_PROJECT.iam.gserviceaccount.com"
 
