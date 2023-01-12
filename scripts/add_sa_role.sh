@@ -1,12 +1,9 @@
 #!/bin/bash
 
-set -x
+set -ex
 
 ORG_ID=$(gcloud organizations list --format 'value(ID)')
-TIMESTAMP=$(date +%s)
-DELTA=3000
-TIMESTAMP_PLUS_EXPIRY=$((TIMESTAMP + DELTA))
-EXPIRY=$(printf '%(%Y-%m-%dT%H:%M:%SZ)T' $TIMESTAMP_PLUS_EXPIRY)
+EXPIRY=$(python3 -c 'from datetime import datetime, timedelta; now = datetime.utcnow(); expires = now + timedelta(hours=1); print(expires.strftime("%Y-%m-%dT%H:%M:%SZ"))')
 SA_PROJECT=$(gcloud config get-value project)
 SERVICE_ACCOUNT="terraform@$SA_PROJECT.iam.gserviceaccount.com"
 
